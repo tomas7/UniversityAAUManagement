@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using UniversityAAU.Data;
 
+
 namespace UniversityAAU
 {
     public class Program
@@ -33,6 +34,7 @@ namespace UniversityAAU
             }
             host.Run();
         }
+
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)

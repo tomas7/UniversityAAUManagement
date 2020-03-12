@@ -7,6 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniversityAAU", "University
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EB92D6E8-2235-4D91-941E-5A8E649FECCD}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		README.txt = README.txt
 	EndProjectSection
 EndProject
