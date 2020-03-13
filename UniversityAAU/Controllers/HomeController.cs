@@ -21,18 +21,18 @@ namespace UniversityAAU.Controllers
             _context = context;
         }
 
-        //public async Task<ActionResult> About()
-        //{
-        //    IQueryable<EnrollmentDateGroup> data =
-        //        from student in _context.Students
-        //        group student by student.EnrollmentDate into dateGroup
-        //        select new EnrollmentDateGroup()
-        //        {
-        //            EnrollmentDate = dateGroup.Key,
-        //            StudentCount = dateGroup.Count()
-        //        };
-        //    return View(await data.AsNoTracking().ToListAsync());
-        //}
+        public async Task<ActionResult> About()
+        {
+            IQueryable<EnrollmentDateGroup> data =
+                from student in _context.Students
+                group student by student.EnrollmentDate into dateGroup
+                select new EnrollmentDateGroup()
+                {
+                    EnrollmentDate = dateGroup.Key,
+                    StudentCount = dateGroup.Count()
+                };
+            return View(await data.AsNoTracking().ToListAsync());
+        }
 
         private readonly ILogger<HomeController> _logger;
 
