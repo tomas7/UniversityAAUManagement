@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UniversityAAU.Data;
 
 namespace UniversityAAU.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200315171233_PersonModelAdded")]
+    partial class PersonModelAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -313,6 +315,29 @@ namespace UniversityAAU.Migrations
                     b.ToTable("Enrollment");
                 });
 
+            modelBuilder.Entity("UniversityAAU.Models.Instructor", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FirstMidName")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<DateTime>("HireDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Instructor");
+                });
+
             modelBuilder.Entity("UniversityAAU.Models.OfficeAssignment", b =>
                 {
                     b.Property<int>("InstructorID")
@@ -327,18 +352,21 @@ namespace UniversityAAU.Migrations
                     b.ToTable("OfficeAssignment");
                 });
 
-            modelBuilder.Entity("UniversityAAU.Models.Person", b =>
+            modelBuilder.Entity("UniversityAAU.Models.Student", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("EnrollmentDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("FirstMidName")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20);
 
@@ -348,33 +376,7 @@ namespace UniversityAAU.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Person");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Person");
-                });
-
-            modelBuilder.Entity("UniversityAAU.Models.Instructor", b =>
-                {
-                    b.HasBaseType("UniversityAAU.Models.Person");
-
-                    b.Property<DateTime>("HireDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasDiscriminator().HasValue("Instructor");
-                });
-
-            modelBuilder.Entity("UniversityAAU.Models.Student", b =>
-                {
-                    b.HasBaseType("UniversityAAU.Models.Person");
-
-                    b.Property<DateTime>("EnrollmentDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
-
-                    b.HasDiscriminator().HasValue("Student");
+                    b.ToTable("Student");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

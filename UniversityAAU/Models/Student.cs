@@ -6,25 +6,18 @@ using System.Threading.Tasks;
 
 namespace UniversityAAU.Models
 {
-    public class Student
+    public class Student : Person
     {
      
-        public int ID { get; set; }
-
-
-        [Display(Name = "Last name")]
-        [StringLength(20)]
-        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$", ErrorMessage ="Error message here!")]
-        public string LastName { get; set; }
+       
 
  
         [Display(Name = "First name")]
         [StringLength(20)]
         public string? FirstName { get; set; }
 
-        [Display(Name = "First middle name")]
-        [StringLength(20)]
-        public string? FirstMidName { get; set; }
+
+
         //public string emailaddress { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM}", ApplyFormatInEditMode = true)]
